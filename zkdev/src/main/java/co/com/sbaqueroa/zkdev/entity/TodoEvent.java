@@ -2,50 +2,66 @@ package co.com.sbaqueroa.zkdev.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
-public class Log implements Serializable, Cloneable {
+public class TodoEvent implements Serializable, Cloneable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Integer id;
+	private String id;
 
 	@Column(nullable = false)
-	String message;
+	private String name;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	Date date;
+	@Column(nullable = false)
+	private int priority;
+	
+	@Column(nullable = false)
+	private Date date;
 
-	public Log() {
+	public TodoEvent() {
 	}
 
-	public Log(String message) {
-		this.message = message;
-		this.date = new Date();
+	public TodoEvent(String name) {
+		this.name = name;
 	}
+	
+	public TodoEvent(String id, String name, int priority, Date date) {
+    this.id = id;
+    this.name = name;
+    this.priority = priority;
+    this.date = date;
+}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getMessage() {
-		return message;
+	public int getPriority() {
+		return priority;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Date getDate() {
@@ -72,7 +88,7 @@ public class Log implements Serializable, Cloneable {
 			return false;
 		if(getClass() != obj.getClass())
 			return false;
-		Log other = (Log)obj;
+		TodoEvent other = (TodoEvent)obj;
 		if(id == null) {
 			if(other.id != null)
 				return false;
