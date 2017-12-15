@@ -1,0 +1,19 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<grid apply="org.zkoss.bind.BindComposer"
+    viewModel="@id('vm') @init('gasd.zktest.mvvmexample.UserViewModel')"
+     model="@bind(vm.users)">
+    <columns>
+        <column label="Name" sort="auto" />
+        <column label="Title" sort="auto" />
+        <column label="Age" sort="auto" />
+    </columns>
+    <template name="model" var="user">
+        <row>
+            <textbox value="@bind(user.name)" />
+            <textbox value="@bind(user.title)" />
+            <intbox value="@bind(user.age)" />
+        </row>
+    </template>
+</grid>
+</zk>

@@ -1,0 +1,8 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Property Retrieval" border="normal" apply="gasd.zktest.mvcexample.OSPropertyRetriverSelectorComposer">
+    Enter a property name 2: <textbox id="input"/>
+    <button label="Retrieve" id="retrieve"/>
+    <vlayout id="result"/>
+</window>
+</zk>

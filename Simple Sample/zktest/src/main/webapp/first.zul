@@ -1,0 +1,45 @@
+<?page title="First Page" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="First Page" border="normal">
+New Content Here!
+<button label="Say Hello" onClick='alert("Sergio, the best")'/>
+<zscript>
+	void alert(String message){
+		Messagebox.show(message);
+	}
+</zscript>
+</window>
+<window title="Property Retrieval" border="normal">
+    Enter a property name: <textbox/>
+    <button label="Retrieve" onClick="alert(System.getProperty(self.getPreviousSibling().getValue()))"/>
+</window>
+<window title="Property Retrieval 2 " border="normal">
+    Enter a 2 property name :<textbox id="input"/>
+    <button label="Retrieve"
+     onClick='result.appendChild(new Label(input.getValue()+" --> "+System.getProperty(input.getValue())))'/>
+    <vlayout id="result"/>
+</window>
+<window title="Property Retrieval 3" border="normal">
+    Enter a 3 property name: <textbox id="input"/>
+    <button label="Retrieve"
+     onClick="result.setValue(System.getProperty(input.getValue()))"/>
+    <separator/>
+    <label id="result"/>
+</window>
+<?variable-resolver class="gasd.zktest.model.resolver.UserResolver"?>
+<grid>
+    <columns>
+        <column label="Name" sort="auto"/>
+        <column label="Title" sort="auto"/>
+        <column label="Age" sort="auto"/>
+    </columns>
+    <rows>
+        <row forEach="${users}">
+            <label value="${each.name}"/>
+            <label value="${each.title}"/>
+            <label value="${each.age}"/>
+        </row>
+    </rows>
+</grid>
+
+</zk>
