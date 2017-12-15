@@ -1,33 +1,32 @@
+<?page title="Lista de pendientes" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window apply="org.zkoss.bind.BindComposer"
-		viewModel="@id('vm')@init('co.com.sbaqueroa.zkdev.MyViewModel')"
-		validationMessages="@id('vmsgs')" width="600px" vflex="1">
-		<vlayout>
-			<hbox align="center" hflex="1">
-				Log message: <textbox value="@save(vm.message)"
-					onOK="@command('addLog')" hflex="1" placeholder="What happened?" />
-				<button label="add" onClick="@command('addLog')" />
-			</hbox>
-			<listbox model="@bind(vm.logListModel)" rows="10">
-				<listhead>
-					<listheader hflex="min" />
-					<listheader hflex="min" />
-					<listheader />
-				</listhead>
-				<template name="model">
-					<listitem>
-						<listcell>
-							<button label="delete" onClick="@command('deleteLog', log=each)" />
-						</listcell>
-						<listcell>
-							<label value="@bind(each.date) @converter('formattedDate', format='yyyy/MM/dd HH:mm:ss')" />
-						</listcell>
-						<listcell>
-							<label value="@bind(each.message)" />
-						</listcell>
-					</listitem>
-				</template>
-			</listbox>
-		</vlayout>
-	</window>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<window title="Lista de pendientes" border="normal"
+    viewModel="@id('todoModelV') @init(todoModel)">
+	<listbox id = "todoListBox" multiple = "true"
+		model="@bind(todoModelV.events)"
+		selectedItem="@bind(todoModelV.selectedTodoEvent)">
+		<listhead>
+			<listheader label = "Nombre"></listheader>
+			<listheader label = "Prioridad"></listheader>
+			<listheader label = "Fecha"></listheader>
+		</listhead>
+		  <template name="model" var="event">
+			<listitem value="@load(event)">
+				<listcell label="@load(event.name)"/>
+	            <listcell label="@load(event.priority)" />
+	            <listcell label="@load(event.date)" />
+			</listitem>
+		</template>
+	</listbox>
+	 <groupbox id="eventModifier">
+		<caption label = "Pendiente"/>
+		Nombre: <textbox id = "txtname" cols = "25" value="@bind(todoModelV.selectedTodoEventDTO.name)"/>
+		Prioridad: <intbox id = "txtpriority" cols = "1" value="@bind(todoModelV.selectedTodoEventDTO.priority)"/>
+		Fecha: <datebox id = "txtdate" cols = "8" value="@bind(todoModelV.selectedTodoEventDTO.date)"/>
+		<button id = "add" label = "Añadir"  onClick="@command('add')" />
+		<button id = "update" label = "Actualizar" onClick="@command('update')" disabled="@load(empty todoModelV.selectedTodoEvent)"/>
+		<button id = "delete" label = "Borrar" onClick="@command('delete')" disabled="@load(empty todoModelV.selectedTodoEvent)"/>
+	</groupbox>
+</window>
 </zk>
