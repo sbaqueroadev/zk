@@ -118,7 +118,6 @@
 			<artifactId>mongo-java-driver</artifactId>
 			<version>3.6.0</version>
 		</dependency>
-		
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>

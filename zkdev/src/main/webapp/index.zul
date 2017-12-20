@@ -28,5 +28,6 @@
 		<button id = "update" label = "Actualizar" onClick="@command('update')" disabled="@load(empty todoModelV.selectedTodoEvent)"/>
 		<button id = "delete" label = "Borrar" onClick="@command('delete')" disabled="@load(empty todoModelV.selectedTodoEvent)"/>
 	</groupbox>
+
 </window>
 </zk>

@@ -10,9 +10,16 @@
 			<property name="hibernate.connection.username" value="contigo" />
 			<property name="hibernate.connection.password" value="contigopass" />
 			<property name="hibernate.show_sql" value="true" />
+<<<<<<< HEAD
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/contigo" />
 			<!-- db is not persistent to disk <property name="hibernate.connection.url" 
 				value="jdbc:hsqldb:mem:data/store" /> -->
+=======
+			<!-- data store in data/db under project folder -->
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/contigo" />
+			<!-- db is not persistent to disk
+			<property name="hibernate.connection.url" value="jdbc:hsqldb:mem:data/store" /> -->
+>>>>>>> branch 'springMongo' of https://github.com/sbaqueroadev/zk.git
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<!-- drop table every time <property name="hibernate.hbm2ddl.auto" value="create" 
 				/> -->
