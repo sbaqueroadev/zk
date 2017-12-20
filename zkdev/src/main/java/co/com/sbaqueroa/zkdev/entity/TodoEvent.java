@@ -3,38 +3,26 @@ package co.com.sbaqueroa.zkdev.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import co.com.sbaqueroa.zkdev.dto.TodoEventDTO;
 
-@Entity
-@Table(name = "todoEvent")
+@Document(collection = "todoEvent")
 public class TodoEvent implements Serializable, Cloneable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private String id;
 
-	@Column(nullable = false)
-	private String name = "";
-
-	@Column(nullable = false)
-	private int priority = 0;
-	
-	@Column(nullable = false)
-	private Date date = new Date();
+	private String name;
+	private int priority;
+	private Date date;
 
 	public TodoEvent() {
 	}
 
-	public TodoEvent(Integer id, String name, int priority, Date date) {
-    this.id = id;
+	public TodoEvent(String name, int priority, Date date) {
     this.name = name;
     this.priority = priority;
     this.date = date;
@@ -47,11 +35,11 @@ public class TodoEvent implements Serializable, Cloneable {
 		this.date = eventDTO.getDate();
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -79,29 +67,5 @@ public class TodoEvent implements Serializable, Cloneable {
 		this.date = date;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id < 0) ? 0 : id);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if(this == obj)
-			return true;
-		if(obj == null)
-			return false;
-		if(getClass() != obj.getClass())
-			return false;
-		TodoEvent other = (TodoEvent)obj;
-		if(id<0) {
-			if(other.id<0)
-				return false;
-		} else if(id != other.id)
-			return false;
-		return true;
-	}
-
+	
 }

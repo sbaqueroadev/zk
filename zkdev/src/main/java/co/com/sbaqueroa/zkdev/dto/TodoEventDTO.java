@@ -2,13 +2,11 @@ package co.com.sbaqueroa.zkdev.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-
 import co.com.sbaqueroa.zkdev.entity.TodoEvent;
 
 public class TodoEventDTO {
 
-	private Integer id;
+	private String id;
 	private String name = "";
 	private int priority = 0;
 	private Date date = new Date();
@@ -16,8 +14,7 @@ public class TodoEventDTO {
 	public TodoEventDTO() {
 	}
 
-	public TodoEventDTO(Integer id, String name, int priority, Date date) {
-    this.id = id;
+	public TodoEventDTO(String name, int priority, Date date) {
     this.name = name;
     this.priority = priority;
     this.date = date;
@@ -30,11 +27,11 @@ public class TodoEventDTO {
 		this.date = event.getDate();
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

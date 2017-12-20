@@ -55,8 +55,8 @@ public class TodoEventDAO {
    
   public boolean update(TodoEvent evt) throws TodoEventNoExistException {
   	try {
-			if (todoEventRepository.findById(evt.getId()) != null ){
-				TodoEvent tEvt= todoEventRepository.update(evt);
+			if (todoEventRepository.existsById(evt.getId())){
+				TodoEvent tEvt= todoEventRepository.save(evt);
 				if(tEvt == null){
 					return false;
 				}
@@ -70,6 +70,6 @@ public class TodoEventDAO {
   }
 
 	public TodoEvent refresh(TodoEvent todoEvent) throws Exception {
-		return this.todoEventRepository.refresh(todoEvent);
+		return this.todoEventRepository.findById(todoEvent.getId()).get();
 	}
 }

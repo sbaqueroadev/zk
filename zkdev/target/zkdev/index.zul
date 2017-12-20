@@ -19,14 +19,14 @@
 			</listitem>
 		</template>
 	</listbox>
-	 <groupbox id="eventModifier" form="@id('event') @load(todoModelV.selectedTodoEvent)">
+	 <groupbox id="eventModifier">
 		<caption label = "Pendiente"/>
-		Nombre: <textbox id = "txtname" cols = "25" value="@bind(event.name)"/>
-		Prioridad: <intbox id = "txtpriority" cols = "1" value="@bind(event.priority)"/>
-		Fecha: <datebox id = "txtdate" cols = "8" value="@bind(event.date)"/>
+		Nombre: <textbox id = "txtname" cols = "25" value="@bind(todoModelV.selectedTodoEventDTO.name)"/>
+		Prioridad: <intbox id = "txtpriority" cols = "1" value="@bind(todoModelV.selectedTodoEventDTO.priority)"/>
+		Fecha: <datebox id = "txtdate" cols = "8" value="@bind(todoModelV.selectedTodoEventDTO.date)"/>
 		<button id = "add" label = "Añadir"  onClick="@command('add')" />
-		<button id = "update" label = "Actualizar" onClick="@command('update')" disabled="@load(empty event)"/>
-		<button id = "delete" label = "Borrar" onClick="@command('delete')" disabled="@load(empty event)"/>
+		<button id = "update" label = "Actualizar" onClick="@command('update')" disabled="@load(empty todoModelV.selectedTodoEvent)"/>
+		<button id = "delete" label = "Borrar" onClick="@command('delete')" disabled="@load(empty todoModelV.selectedTodoEvent)"/>
 	</groupbox>
 </window>
 </zk>

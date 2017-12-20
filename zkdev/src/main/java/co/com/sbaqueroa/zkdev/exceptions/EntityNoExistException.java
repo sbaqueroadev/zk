@@ -1,8 +1,6 @@
 package co.com.sbaqueroa.zkdev.exceptions;
 
-import javax.persistence.EntityNotFoundException;
-
-public class EntityNoExistException extends EntityNotFoundException {
+public class EntityNoExistException extends Exception {
 
 	/**
 	 * 

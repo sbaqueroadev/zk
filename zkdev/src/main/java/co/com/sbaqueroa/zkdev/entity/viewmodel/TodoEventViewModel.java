@@ -14,6 +14,7 @@ import co.com.sbaqueroa.zkdev.dao.TodoEventRepository;
 import co.com.sbaqueroa.zkdev.dto.TodoEventDTO;
 import co.com.sbaqueroa.zkdev.entity.TodoEvent;
 import co.com.sbaqueroa.zkdev.exceptions.NotPersistEntity;
+import co.com.sbaqueroa.zkdev.exceptions.TodoEventNoExistException;
 
 /*
 * @author: gasdsba - sbaqueroa@gmail.com
@@ -89,7 +90,7 @@ public class TodoEventViewModel {
 
 	@Command("update")
 	@NotifyChange({"events","selectedTodoEvent","selectedTodoEventDTO"})
-	public void update() {
+	public void update() throws TodoEventNoExistException {
 		TodoEvent todoEvent = new TodoEvent(this.getSelectedTodoEventDTO());
 		this.eventDao.update(todoEvent);
 		this.resetSelection();
