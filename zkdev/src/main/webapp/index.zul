@@ -1,0 +1,33 @@
+<?page title="Lista de pendientes" contentType="text/html;charset=UTF-8"?>
+<zk>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<window title="Lista de pendientes" border="normal"
+    viewModel="@id('todoModelV') @init(todoModel)">
+	<listbox id = "todoListBox" multiple = "true"
+		model="@bind(todoModelV.events)"
+		selectedItem="@bind(todoModelV.selectedTodoEvent)">
+		<listhead>
+			<listheader label = "Nombre"></listheader>
+			<listheader label = "Prioridad"></listheader>
+			<listheader label = "Fecha"></listheader>
+		</listhead>
+		  <template name="model" var="event">
+			<listitem value="@load(event)">
+				<listcell label="@load(event.name)"/>
+	            <listcell label="@load(event.priority)" />
+	            <listcell label="@load(event.date)" />
+			</listitem>
+		</template>
+	</listbox>
+	 <groupbox id="eventModifier">
+		<caption label = "Pendiente"/>
+		Nombre: <textbox id = "txtname" cols = "25" value="@bind(todoModelV.selectedTodoEventDTO.name)"/>
+		Prioridad: <intbox id = "txtpriority" cols = "1" value="@bind(todoModelV.selectedTodoEventDTO.priority)"/>
+		Fecha: <datebox id = "txtdate" cols = "8" value="@bind(todoModelV.selectedTodoEventDTO.date)"/>
+		<button id = "add" label = "Añadir"  onClick="@command('add')" />
+		<button id = "update" label = "Actualizar" onClick="@command('update')" disabled="@load(empty todoModelV.selectedTodoEvent)"/>
+		<button id = "delete" label = "Borrar" onClick="@command('delete')" disabled="@load(empty todoModelV.selectedTodoEvent)"/>
+	</groupbox>
+
+</window>
+</zk>
