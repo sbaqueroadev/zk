@@ -8,6 +8,7 @@
 		<zk.version>8.5.0-Eval</zk.version>
 		<spring.version>5.0.2.RELEASE</spring.version>
 		<hibernate.version>4.0.0.Final</hibernate.version>
+		<mongodb.version>2.0.2.RELEASE</mongodb.version>
 		<commons-io>2.4</commons-io>
 		<maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
 		<packname>-${project.version}-FL-${maven.build.timestamp}</packname>
@@ -41,17 +42,6 @@
 			<url>http://mavensync.zkoss.org/maven2/</url>
 		</pluginRepository>
 	</pluginRepositories>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>2.0.0.M1</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.zkoss.zk</groupId>
@@ -85,7 +75,7 @@
 			<version>${commons-io}</version>
 		</dependency>
 
-		<!-- Spring 3 dependencies -->
+		<!-- Spring dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
@@ -115,12 +105,12 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
-			<version>2.0.2.RELEASE</version>
+			<version>${mongodb.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-commons</artifactId>
-			<version>2.0.2.RELEASE</version>
+			<version>${mongodb.version}</version>
 		</dependency>
 		<!-- mongodb java driver -->
 		<dependency>
@@ -128,6 +118,7 @@
 			<artifactId>mongo-java-driver</artifactId>
 			<version>3.6.0</version>
 		</dependency>
+		
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
